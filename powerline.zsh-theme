@@ -52,10 +52,10 @@ ZSH_THEME_GIT_PROMPT_DIVERGED=""
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  echo "%F{223}%K{240}$(parse_git_dirty)${ref#refs/heads/} "
 }
 
-POWERLINE_GIT_INFO_LEFT="%F{223}%K{240}"$'$(parse_git_dirty)$(git_prompt_info) '
+POWERLINE_GIT_INFO_LEFT='' #'$(git_prompt_info)'
 
 PROMPT="%F{022}%K{148} $POWERLINE_USER_NAME "$POWERLINE_GIT_INFO_LEFT"%F{255}%K{236} "$POWERLINE_CURRENT_PATH" %k%f "
 
